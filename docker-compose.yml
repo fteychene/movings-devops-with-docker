@@ -1,0 +1,35 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: fteychene/dokcer-prez:compose
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres
+    networks:
+      - db
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=jug
+    expose:
+      - 5432
+    networks:
+      - db
+    volumes_from:
+      - postgres-data
+  postgres-data:
+    image: alpine
+    command: pwd > /dev/null
+    volumes:
+      - postgres-data:/var/lib/postgresql/data/pgdata
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver : local
