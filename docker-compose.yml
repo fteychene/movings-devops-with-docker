@@ -4,12 +4,16 @@ services:
   app:
     build: .
     image: fteychene/dokcer-prez:compose
+    environment:
+      - RABBITMQ_HOST=rabbitmq
     ports:
       - 8080:8080
     depends_on:
       - postgres
+      - rabbitmq
     networks:
       - db
+      - events
   postgres:
     image: postgres
     environment:
@@ -24,12 +28,15 @@ services:
     image: alpine
     command: pwd > /dev/null
     volumes:
-      - postgres-data:/var/lib/postgresql/data/pgdata
-
+      - /var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq
+    expose:
+      - 5672
+    networks:
+      - events
 networks:
   db:
     driver: bridge
-
-volumes:
-  postgres-data:
-    driver : local
+  events:
+      driver: bridge
