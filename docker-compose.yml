@@ -1,19 +1,28 @@
 version: '2'
 
 services:
+  proxy:
+    image: nginx
+    volumes:
+      - $PWD/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 8080:80
+    networks:
+      - front
   app:
     build: .
-    image: fteychene/dokcer-prez:compose
+    image: fteychene/docker-prez:compose
     environment:
       - RABBITMQ_HOST=rabbitmq
-    ports:
-      - 8080:8080
     depends_on:
       - postgres
       - rabbitmq
+    expose:
+      - 8080
     networks:
       - db
       - events
+      - front
   postgres:
     image: postgres
     environment:
@@ -36,6 +45,8 @@ services:
     networks:
       - events
 networks:
+  front:
+    driver: bridge
   db:
     driver: bridge
   events:

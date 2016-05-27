@@ -17,6 +17,10 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 
 @Path("/greet")
 public class GreetController {
@@ -39,8 +43,11 @@ public class GreetController {
 	@Path("/list")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Iterable<Greet> list() {
-		return greetEvents.getGreets();
+	public Map<String, Object> list() throws UnknownHostException {
+		Map<String, Object> result = new HashMap<>();
+		result.put("hostname", InetAddress.getLocalHost().getHostName());
+		result.put("greets", greetEvents.getGreets());
+		return result;
 	}
 
 	
