@@ -2,16 +2,13 @@ version: '2'
 
 services:
   proxy:
-    image: nginx
-    volumes:
-      - $PWD/nginx.conf:/etc/nginx/nginx.conf
+    image: fteychene/docker-prez-proxy:swarm
     ports:
       - 8080:80
     networks:
       - front
   app:
-    build: .
-    image: fteychene/docker-prez:compose
+    image: fteychene/docker-prez-app:swarm
     environment:
       - RABBITMQ_HOST=rabbitmq
     depends_on:
@@ -46,8 +43,5 @@ services:
       - events
 networks:
   front:
-    driver: bridge
   db:
-    driver: bridge
   events:
-      driver: bridge
