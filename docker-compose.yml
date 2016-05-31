@@ -3,7 +3,7 @@ version: '2'
 services:
   app:
     build: .
-    image: fteychene/dokcer-prez:compose
+    image: fteychene/jee:compose
     ports:
       - 8080:8080
     depends_on:
@@ -17,14 +17,16 @@ services:
     expose:
       - 5432
     networks:
-      - db
+      db:
+        aliases:
+          - postgres
     volumes_from:
       - postgres-data
   postgres-data:
     image: alpine
     command: pwd > /dev/null
     volumes:
-      - postgres-data:/var/lib/postgresql/data/pgdata
+      - postgres-data:/var/lib/postgresql/data
 
 networks:
   db:
