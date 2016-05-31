@@ -3,8 +3,7 @@
 	<persistence-unit name="datasource" >
 		<jta-data-source>java:jboss/datasources/datasource</jta-data-source>
 		<properties>
-			<property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <property name="eclipselink.deploy-on-startup" value="true"/>
+			<property name="hibernate.hbm2ddl.auto" value="update"/>
 		</properties>
 	</persistence-unit>
 </persistence>
