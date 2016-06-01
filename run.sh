@@ -34,4 +34,9 @@ echo \> docker run --link postgres -p 8080:8080 fteychene/jee:links
 read
 docker run --link postgres -p 8080:8080 fteychene/jee:links
 
+echo \> docker run --link postgres -p 8080:8080 fteychene/jee:links
+read
+docker run --link postgres -p 8080:8080 fteychene/jee:links
+
+
 docker rm -f postgres
