@@ -12,4 +12,4 @@ Links and networks : [Links](https://github.com/fteychene/movings-devops-with-do
 Compose : [Compose](https://github.com/fteychene/movings-devops-with-docker/tree/compose)  
 Compose v2 : [Compose v2](https://github.com/fteychene/movings-devops-with-docker/tree/compose2)  
 Compose v3 : [Compose v3](https://github.com/fteychene/movings-devops-with-docker/tree/compose3)  
-Swarm show case : [Compose v3](https://github.com/fteychene/movings-devops-with-docker/tree/swarm)  
+Swarm show case : [Swarm](https://github.com/fteychene/movings-devops-with-docker/tree/swarm)  
