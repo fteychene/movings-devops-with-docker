@@ -1,2 +1,5 @@
-# epsi-sample-jee
-Restfull Webservices with JEE
+# Moving devops with docker
+
+Dockerize a JEE app.
+
+`run.sh`
