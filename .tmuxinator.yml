@@ -1,0 +1,16 @@
+name: docker_prez
+startup_window: 0
+
+windows:
+  - containers: ./run-containers.sh
+  - jee :
+    - echo Build JEE application | figlet | lolcat
+  - manager:
+    - echo Start Swarm manager | figlet | lolcat
+  - agents:
+      layout: main-horizontal
+      panes:
+        - agent1:
+          - echo Start Swarm agent1 | figlet | lolcat
+        - agent2:
+          - echo Start Swarm agent2 | figlet | lolcat
