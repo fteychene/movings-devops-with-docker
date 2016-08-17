@@ -1,2 +1,5 @@
-# epsi-sample-jee
-Restfull Webservices with JEE
+# Moving devops with docker
+
+Docker-compose version
+
+`docker-compose up --build`
