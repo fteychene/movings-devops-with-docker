@@ -1,0 +1,11 @@
+name: swarm-vagrant
+
+pre: vagrant up
+
+windows:
+  - cluster:
+      layout: bae9,169x47,0,0[169x23,0,0,0,169x23,0,24{84x23,0,24,7,84x23,85,24,8}]
+      panes:
+        - vagrant ssh master
+        - vagrant ssh node1
+        - vagrant ssh node2

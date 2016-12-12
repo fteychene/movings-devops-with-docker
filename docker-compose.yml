@@ -1,47 +1,22 @@
 version: '2'
 
 services:
-  proxy:
-    image: fteychene/docker-prez-proxy:swarm
-    ports:
-      - 8080:80
-    networks:
-      - front
-  app:
-    image: fteychene/docker-prez-app:swarm
-    environment:
-      - RABBITMQ_HOST=rabbitmq
-    depends_on:
-      - postgres
-      - rabbitmq
-    expose:
-      - 8080
-    networks:
-      - db
-      - events
-      - front
-  postgres:
-    image: postgres
-    environment:
-      - POSTGRES_PASSWORD=jug
-    expose:
-      - 5432
-    networks:
-      - db
-    volumes_from:
-      - postgres-data
-  postgres-data:
-    image: alpine
-    command: pwd > /dev/null
-    volumes:
-      - /var/lib/postgresql/data
-  rabbitmq:
-    image: rabbitmq
-    expose:
-      - 5672
-    networks:
-      - events
+  web:
+    image: dockerdemos/lab-web
+    ports: ["8000:80"]
+    networks: ["private"]
+
+  words:
+    image: dockerdemos/lab-words-dispatcher
+    networks: ["private"]
+
+  words-java:
+    image: dockerdemos/lab-words-java
+    networks: ["private"]
+
+  mongo:
+    image: mongo:3.3.15
+    networks: ["private"]
+
 networks:
-  front:
-  db:
-  events:
+  private:
